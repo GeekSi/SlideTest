@@ -12,14 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.siqing.slidetest.R;
 import com.example.siqing.slidetest.adapter.AppItemAdapter;
@@ -36,8 +31,8 @@ import java.util.List;
  * Created by siqing on 2018/3/28.
  */
 
-public class LauncherActivity extends Activity implements SlideGestureDector.SlideListener {
-    private static final String TAG = "LauncherActivity";
+public class ApplistActivity extends Activity implements SlideGestureDector.SlideListener {
+    private static final String TAG = "ApplistActivity";
     private SlideGestureDector dector;
     private RecyclerView appListRV = null;
     private List<AppModel> appModelList = new ArrayList<>();
@@ -61,7 +56,7 @@ public class LauncherActivity extends Activity implements SlideGestureDector.Sli
     };
 
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, LauncherActivity.class);
+        Intent intent = new Intent(context, ApplistActivity.class);
         context.startActivity(intent);
     }
 

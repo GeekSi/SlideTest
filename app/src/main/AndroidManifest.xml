@@ -29,7 +29,7 @@
             android:screenOrientation="landscape" />
 
         <activity
-            android:name=".activity.LauncherActivity"
+            android:name=".activity.ApplistActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:taskAffinity=":launcher" />

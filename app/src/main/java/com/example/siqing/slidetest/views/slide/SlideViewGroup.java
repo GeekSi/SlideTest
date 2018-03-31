@@ -6,10 +6,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 
-import com.example.siqing.slidetest.activity.LauncherActivity;
+import com.example.siqing.slidetest.activity.ApplistActivity;
 import com.example.siqing.slidetest.views.touch.SlideGestureDector;
 
 public class SlideViewGroup extends FrameLayout {
@@ -33,7 +32,7 @@ public class SlideViewGroup extends FrameLayout {
             @Override
             public void onSlideChange(boolean isLeft) {
                 if (!isLeft) {
-                    LauncherActivity.actionStart(getContext());
+                    ApplistActivity.actionStart(getContext());
                 }
             }
         });
