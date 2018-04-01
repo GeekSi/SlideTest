@@ -83,12 +83,12 @@ public class SlideViewGroup2 extends FrameLayout {
             return result;
         }
 
-//        @Override
-//        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-////            Log.i(TAG, "onViewPositionChanged =left== " + left);
-//            super.onViewPositionChanged(changedView, left, top, dx, dy);
-//            ViewCompat.postInvalidateOnAnimation(SlideViewGroup2.this);
-//        }
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+//            Log.i(TAG, "onViewPositionChanged =left== " + left);
+            super.onViewPositionChanged(changedView, left, top, dx, dy);
+            ViewCompat.postInvalidateOnAnimation(SlideViewGroup2.this);
+        }
 
         @Override
         public void onViewDragStateChanged(int state) {
@@ -142,15 +142,21 @@ public class SlideViewGroup2 extends FrameLayout {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        if (!changed) {
-            return;
+        Log.i(TAG, "onLayout =state= " + currentState + " = change == " + changed + "=left=" + left + "=top=" + top + "=right=" + right + "=bottom=" + bottom);
+        if (currentState == STATE_CLOSE) {
+            int childLeft = left - targetView.getMeasuredWidth();
+            int childRight = childLeft + targetView.getMeasuredWidth();
+            targetView.layout(childLeft, top, childRight, bottom);
+        } else if (currentState == STATE_OPEN) {
+//            super.onLayout(changed, left, top, right, bottom);
+            targetView.layout(left, top, right, bottom);
+        } else if (currentState == STATE_SLIDING) {
+            int childLeft = left - targetView.getMeasuredWidth();
+            int childRight = childLeft + targetView.getMeasuredWidth();
+            targetView.layout(childLeft, top, childRight, bottom);
+        } else {
+            super.onLayout(changed, left, top, right, bottom);
         }
-        Log.i(TAG, "onLayout == change == " + changed + "=left=" + left + "=top=" + top + "=right=" + right + "=bottom=" + bottom);
-        Log.i(TAG, "onLayout == childMeasureWidth = " + targetView.getMeasuredWidth() + ",childMeasureHeight = " + targetView.getMeasuredHeight());
-        Log.i(TAG, "onLayout == childWidth = " + targetView.getWidth() + ",childHeight = " + targetView.getHeight());
-        int childLeft = left - targetView.getMeasuredWidth();
-        int childRight = childLeft + targetView.getMeasuredWidth();
-        targetView.layout(childLeft, top, childRight, bottom);
     }
 
     @Override
@@ -162,8 +168,10 @@ public class SlideViewGroup2 extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.i(TAG, "onMeasure ===screenWidth== " + screenWidth + "==screenHeight==" + screenHeight);
         targetView.measure(MeasureSpec.makeMeasureSpec(screenWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
@@ -227,7 +235,7 @@ public class SlideViewGroup2 extends FrameLayout {
             return true;
         }
         shouldIntercept = super.onInterceptTouchEvent(event);
-        Log.i(TAG, "onInterceptSSSTouchEvent ===shouldIntercept=== " + shouldIntercept);
+//        Log.i(TAG, "onInterceptSSSTouchEvent ===shouldIntercept=== " + shouldIntercept);
         return shouldIntercept;
     }
 
