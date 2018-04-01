@@ -162,14 +162,8 @@ public class SlideViewGroup2 extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            targetView.measure(MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(screenWidth, MeasureSpec.EXACTLY));
-        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            targetView.measure(MeasureSpec.makeMeasureSpec(screenWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
-        }
-        Log.i(TAG, "onMeasure == screenWidth = " + screenWidth + ",screenHeight = " + screenHeight);
+        targetView.measure(MeasureSpec.makeMeasureSpec(screenWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
@@ -194,7 +188,6 @@ public class SlideViewGroup2 extends FrameLayout {
         animator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
             }
 
             @Override
@@ -207,12 +200,10 @@ public class SlideViewGroup2 extends FrameLayout {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         });
         animator.start();
@@ -231,42 +222,6 @@ public class SlideViewGroup2 extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         Log.i(TAG, "onInterceptSSSTouchEvent === " + event.getAction() + ", x == " + event.getX() + "==state==" + currentState);
-
-//        int action = MotionEvent.ACTION_MASK & event.getAction();
-//
-//        switch (action) {
-//            case MotionEvent.ACTION_DOWN:
-//                startX = event.getX();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                if (currentState == STATE_CLOSE) {
-//                    float disX = event.getX() - startX;
-//                    if (disX > ViewConfiguration.getTouchSlop()) {
-//                        Log.i(TAG, "onInterceptTouchEvent===currentState == STATE_CLOSE ===TO===SLIDING ");
-//                        getSlideGroupListener().onTouchSlideRight();
-//                        currentState = STATE_SLIDING;
-////                        viewDragHelper.captureChildView(targetView, 0);
-//                    }
-//                } else if (currentState == STATE_SLIDING) {
-//                } else if (currentState == STATE_OPEN) {
-//                    float disX = startX - event.getX();
-//                    Log.i(TAG, "onInterceptTouchEvent===currentState == STATE_OPEN ===disX== " + disX);
-//                    if (disX > ViewConfiguration.getTouchSlop()) {
-//                        Log.i(TAG, "onInterceptTouchEvent===currentState == STATE_OPEN ===TO===SLIDING ");
-//                        currentState = STATE_SLIDING;
-//                        viewDragHelper.captureChildView(targetView, 0);
-//                        return true;
-//                    }
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                break;
-//        }
-//
-//        if (currentState == STATE_OPEN) {
-//            Log.i(TAG, "onInterceptSSSTouchEvent ===super.onInterceptTouchEvent(event)=== ");
-//            return super.onInterceptTouchEvent(event);
-//        }
         boolean shouldIntercept = viewDragHelper.shouldInterceptTouchEvent(event);
         if (currentState == STATE_OPEN && shouldIntercept == true) {
             return true;
@@ -281,10 +236,6 @@ public class SlideViewGroup2 extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         int action = MotionEvent.ACTION_MASK & event.getAction();
         Log.i(TAG, "onTouchEvent === " + action + "state == " + currentState);
-//        if (currentState == STATE_OPEN) {
-//            Log.i(TAG, "onTouchEvent ===super.onTouchEvent(event)=== ");
-//            return super.onTouchEvent(event);
-//        }
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 startX = event.getX();
@@ -300,13 +251,6 @@ public class SlideViewGroup2 extends FrameLayout {
                     }
                 } else if (currentState == STATE_SLIDING) {
                 } else if (currentState == STATE_OPEN) {
-//                    float disX = startX - event.getX();
-//                    Log.i(TAG, "currentState == STATE_OPEN ===disX== " + disX);
-//                    if (disX > ViewConfiguration.getTouchSlop()) {
-//                        Log.i(TAG, "currentState == STATE_OPEN ===TO===SLIDING ");
-//                        currentState = STATE_SLIDING;
-//                        viewDragHelper.captureChildView(targetView, 0);
-//                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
