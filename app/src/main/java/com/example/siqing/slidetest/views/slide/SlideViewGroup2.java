@@ -143,19 +143,13 @@ public class SlideViewGroup2 extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         Log.i(TAG, "onLayout =state= " + currentState + " = change == " + changed + "=left=" + left + "=top=" + top + "=right=" + right + "=bottom=" + bottom);
-        if (currentState == STATE_CLOSE) {
-            int childLeft = left - targetView.getMeasuredWidth();
-            int childRight = childLeft + targetView.getMeasuredWidth();
-            targetView.layout(childLeft, top, childRight, bottom);
-        } else if (currentState == STATE_OPEN) {
-//            super.onLayout(changed, left, top, right, bottom);
-            targetView.layout(left, top, right, bottom);
-        } else if (currentState == STATE_SLIDING) {
+        if (currentState == STATE_CLOSE || currentState == STATE_SLIDING) {
             int childLeft = left - targetView.getMeasuredWidth();
             int childRight = childLeft + targetView.getMeasuredWidth();
             targetView.layout(childLeft, top, childRight, bottom);
         } else {
-            super.onLayout(changed, left, top, right, bottom);
+            //这里是适配当已经open状态拖动刷新界面用
+            targetView.layout(left, top, right, bottom);
         }
     }
 
