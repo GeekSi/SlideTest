@@ -48,7 +48,8 @@ public class SlideViewGroup extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-//        int action = MotionEvent.ACTION_MASK & event.getAction();
+        int action = MotionEvent.ACTION_MASK & event.getAction();
+        Log.i(TAG, "onTouchEvent === " + action);
 //        switch(action) {
 //            case MotionEvent.ACTION_DOWN:
 //                startX = event.getX();
@@ -62,6 +63,7 @@ public class SlideViewGroup extends FrameLayout {
 //            case MotionEvent.ACTION_UP:
 //                break;
 //        }
-        return mDetector.onTouchEvent(event);
+         mDetector.onTouchEvent(event);
+         return true;
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.siqing.slidetest.views.slide.SlideViewGroup2
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#90000000">
+
+    <!--<com.example.siqing.slidetest.views.slide.CustomTextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#8000cc00"-->
+    <!--android:text="this is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler viewthis is recycler view"/>-->
+
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#8000cc00">-->
+
+
+        <!--<Button-->
+            <!--android:id="@+id/click_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="ClickMe"/>-->
+    <!--</FrameLayout>-->
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/app_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80bbbbbb"
+        android:layout_gravity="center_horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="60dp">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</com.example.siqing.slidetest.views.slide.SlideViewGroup2>

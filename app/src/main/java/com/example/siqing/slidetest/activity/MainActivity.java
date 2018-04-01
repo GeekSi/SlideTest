@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.siqing.slidetest.R;
+import com.example.siqing.slidetest.service.SlideViewService;
 
 public class MainActivity extends Activity {
     public String TAG = "MainActivity";
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1234) {
             if (Settings.canDrawOverlays(this)) {
-
+                SlideViewService.startSlideWindowService(this);
             }
         }
     }
@@ -50,6 +51,9 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 1234);
                 return;
             }
+            Intent intent = new Intent(MainActivity.this, SubActivity.class);
+            startActivity(intent);
+        } else {
             Intent intent = new Intent(MainActivity.this, SubActivity.class);
             startActivity(intent);
         }
